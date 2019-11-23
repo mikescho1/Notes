@@ -184,13 +184,63 @@ A more sophisticated example would be to tell the action in which iteration it o
 ![](Images/2019-11-23-17-45-20.png)  
 
 Below is the improved version of the *repeat* method: 
- 
-![](Images/2019-11-23-17-46-23.png)
 
-
+![](Images/2019-11-23-17-46-23.png)  
+And here is how you call it:  
+![](Images/2019-11-23-17-49-49.png)
 
 The below table lists the most important functional interfaces:  
 ![](Images/2019-11-23-17-37-10.png)  
+
+The below table lists Functional Interfaces for Primitive Types:  
+![](Images/2019-11-23-17-52-59.png)  
+* it is a good idea to use an interface from the above tables whenever possible.  
+* most of the standard functional interfaces have nonabstract methods for producing or combining functions  
+  * for example, *Predicate.isEqual(a)* is the same as *a::equals*, but also works if *a* is null.  
+    * default methods for combining predicates are *and, or*, and *negate*  
+    * for example, *Predicate.isEqual(a).or(Predicate.isEqual(b)) is the same as *x ->a.equals(x)* || *b.equals(x)*.  
+
+If you design your own interface with a single abstract method, you can tag it with the **@FunctionalInterface** annotation.  
+* this has two advantages:  
+  * the compiler gives an error message if you accidentally add another nonabstract method.  
+  * the javadoc page includes a statement that your interface is a functional interface.  
+
+* it is not required to use the annotation because any interface with a single abstract method is, by definition, a functional interface. But using the *@FunctionalInterface* is a good idea.  
+
+###### More About Comparators:  
+The *Comparator* interface has a number of convenient static methods for creating comparators. These methods are intended to be used with lambda expressions or method references.  
+
+The static *comparing* method takes a "key extractor" function that maps a type *T* to a comparable type (such as *String*).  
+* the function is applied to the objects to be compared, and the comparison is then made on the returned keys.  
+
+For example, let's say you have an array of *Person* objects. Here is how you can sort them by name:  
+* *Arrays.sort(people, Comparator.comparing(Person::getName))*;
+
+This is certainly much easier than implementing a *Comparator* by hand, and the code is clearer since it is obvious that we want to compare people by name.  
+
+You can chain comparators with the *thenComparing* method for breaking ties. For example: 
+![](Images/2019-11-23-18-06-32.png)  
+* if two people have the same last name, then the second comparator is used.  
+
+There are a few variations of these methods. You can specify a comparator to be used for the keys that the *comparing* and *thenComparing* methods extract.  
+
+For example, here we are sorting people by the length of their names:  
+
+![](Images/2019-11-23-18-09-25.png)  
+
+Moreover, both the *comparing* and *thenComparing* methods have variants that avoid boxing of *int*, *long*, or *double* values.  
+
+An easier way of producing the preceeding operation would be:  
+![](Images/2019-11-23-18-11-51.png)  
+
+The *nullsFirst* and *nullsLast* adapters take an existing comparator and modify it so that it doesn't throw an exectpion when encountering *null* values but ranks them as smaller or larger than regular values.  
+
+For example, suppose *getMiddleName* returns a *null* when a person has no middle name. You can use *Comparator.comparing(Person::getMiddleName(), Comparator.nuulsFirst(...))*.
+
+
+
+
+
 
 
 
