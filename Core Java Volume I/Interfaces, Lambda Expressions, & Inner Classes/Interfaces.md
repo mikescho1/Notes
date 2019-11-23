@@ -144,5 +144,54 @@ This result is unsatisfactory because the user wants an array of references to *
 
 The *toArray* method invokes this constructor to obtain an array of the correct type, then fills and returns the array.  
 
+###### Variable Scope:  
+Lambda expressions can capture the value of a variable in the enclosing scope.  
+* to ensure that the captured value is well-defined, you can only reference variables whose value doesn't change.  
+* the rule is that any captured variable in a lambda expression must be *effectively final*.  
+  * an effectively final variable is a variable that is never assigned a new value after it has been initialized.  
+
+The body of a lambda expression has *the same scope as a nested block*. 
+* the same rules for name conflicts and shadowing apply.  
+* it is illegal to declare a parameter or a local variable in the lambda that has the same name as a local variable.  
+* inside a method, you can't have two local variables with the same name, and therefore, you can't introduce such variables in a lambda expression either.  
+* when you use the *this* keyword in a lambda expression, you refer to the *this* parameter of the method that creates the lambda.  
+
+![](Images/2019-11-23-17-29-30.png)  
+* the expression *this.toString()* calls the *toString* method of the *Application* object, *not* the *ActionListener* instance.  
+  * there is nothing special about the use of *this* in a lambda expression. The scope of the lambda expression is nested inside the *init* method, and *this* has the same meaning anywhere in that method.  
+
+###### Procssing Lambda Expressions: 
+The point of using lambdas is *deferred execution*. If you wanted to execute some code right now, you'd do that without wrapping it inside a lambda.  
+
+There are many reasons for executing code later, such as:  
+* running code in a separate thread  
+* running the code multiple times  
+* running the code at the right point in an algorithm (for example, the comparison operation in sorting)  
+* running the code when something happens (a button was clicked, data has arried, and so on)  
+* running the code only when necessary  
+
+Suppose you want to repeat an action *n* number of times. The action and the count are passed to a *repeat* method:  
+* repeat(10, () -> System.out.println("Hello, World"));  
+
+To accept the lambda, we need to pick a functional interface.  In this case, we can use the *Runnable* interface:  
+
+![](Images/2019-11-23-17-41-21.png)  
+* note that the body of the lambda expression is executed when *action.run()* is called.  
+
+A more sophisticated example would be to tell the action in which iteration it occurs. For that, we need to pick a functional interface that has a method with an *int* parameter and a *void* return.
+* the standard interface for processing *int* values is the *IntConsumer* interface;  
+  
+![](Images/2019-11-23-17-45-20.png)  
+
+Below is the improved version of the *repeat* method: 
+ 
+![](Images/2019-11-23-17-46-23.png)
+
+
+
+The below table lists the most important functional interfaces:  
+![](Images/2019-11-23-17-37-10.png)  
+
+
 
 
