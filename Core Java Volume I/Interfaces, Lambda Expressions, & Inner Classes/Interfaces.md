@@ -43,7 +43,106 @@ If a method is defined as a default method in one interface and then again as a 
 1. Superclasses wins and defualt interface methods are ignored.  
 2. Interface clash. If two interface methods have the same name and parameter types (default or not) you must resolve the conflict by overriding that method.  
 ###### Lambda Expressions:  
-* a lambda expression is a block of code that you can pass around so it can be executed later, once or multiple times.
+* a lambda expression is a block of code that you can pass around so it can be executed later, once or multiple times.  
 
 
-    
+
+###### Comparator Example:  
+If you want to sort strings by length instead of the default dictionary order, you pass a Comparator object to the sort method:  
+
+
+![](Images/2019-11-23-15-44-59.png)  
+* the *compare* method is called right away. Instead, the *sort* method keeps calling the *compare* method, rearranging the elements if they are out of order, until the array is sorted.  
+* you give the *sort* method a snippet of code needed to compare the elements, and that code is implemented into the rest of the sorting logic.  
+
+In this example, a block of code waspassed to a *sort* method and that code was called at some later time.  
+
+###### The Syntax Of Lambda Expressions:  
+Lambda expressions are simply a block of code, together with the specification of any variables that must be passed to the code.  
+
+In the comparator example above, we pass the following code that checks whether one string is shorter than another:
+* *(first.length() - second.length())*  
+
+This can be rewritten as a lambda expression in the following format:  
+* *(string first, String second)
+  -> first.length() - second.length()*  
+
+If a code carries out a computation that doesn't fit in a single expression, write it exactly like you would have written a method:
+![](Images/2019-11-23-15-58-45.png)  
+
+If a lambda expression has no parameters, you still supply empty parentheses, just as with a parameterless method:  
+![](Images/2019-11-23-16-00-21.png)  
+
+If the parameter types of a lambda expression can be inferred, you can omit them:  
+![](Images/2019-11-23-16-01-21.png)  
+
+###### Functional Interfaces:  
+You can supply a lambda expression whenever an object of an interface with a single abstract method is expected.  
+* such an interface is called a functional interface.  
+
+To demonstrate the conversion to a functional interface, consider the *Arrays.sort* method. Its second paramter requires an instance of *comparator*, an interface with a single method. Simply supply a lambda:  
+![](Images/2019-11-23-16-06-47.png)  
+* It is best to think of lambda expressions as a function, not an object, and to accept that it can be passed to a functional interface.  
+  + this conversion to interfaces is what makes lambda expressions so compelling. The syntax is short and simple.  
+  + in fact, conversion to a functional interface is the *only* thing that you can do with a lambda expression in Java.  
+
+You can't assign a lambda expression to a variable of type Objec because Object is not a functional interface.  
+* however, you can assign a lambda expression in one of the generic functional interfaces in the *java.util.function* package.  
+
+A particularly usefule interface in the *java.util.function* package is **Predicate**:  
+![](Images/2019-11-23-16-19-44.png)  
+
+The *ArrayList* class has a *removeIf* method whose parameter is a *Predicate*.  
+* it is specifically designed to pass a lambda expression. For example, the following statement removes all null values from an array list:  
+    + *list.removeIf(e -> e == null);*  
+
+###### Method References:  
+Lambda Expression Example:
+* Timer t = new Timer(1000, event -> System.out.println(event));  
+
+Method Reference Example:  
+* Timer t = new Timer(1000, **System.out::println**);  
+
+Another Method Reference Example:  
+* Arrays.sort(strings, String::compareToIgnoreCase)  
+
+As you can see from these examples, the *::* operator separates the method name from the name of an object or class:  
+
+There are three principal cases:  
+* object :: *instanceMethod* - *System.out::println* == x -> *System.out.println(x)* 
+* Class :: *static method* - *Math::pow* == (x, y) -> *Math.pow(x, y)*
+* Class :: *instanceMethod* - *String::compareToIgnoreCase* == *(x, y) -> x.compareToIgnoreCase(y)*
+
+In the first two cases, the method reference is equivalent to a lambda expression that supplies the parameters of the method.  
+
+In the third case, the first parameter becomes the target of the method.  
+
+You can also capture the *this* parameter in a method reference:  
+* *this::equals* == x -> *this.equals(x)*  
+
+Or capture the *super* parameter:  
+* super:: *instanceMethod*  
+
+###### Constructor References:  
+* constructor references are just like method references, except that the name of the method is *new*.  
+    + Person::new is a refence to a *Person* constructor.
+
+
+Constructor references with array types:
+* int[]::new is a constructor reference with one parameter: the length of the array.  
+    + it is equivalent to the lambda expression x -> new int[x].  
+
+Array constructor references are useful to overcome a limitation of Java. It is not possible to construct an array of a generic type *T*.  
+* the expression *new T[n]* is an error since it would be erased to *new Object[n]*.  
+  + the *Stream* interface has a *toArray* method that returns an Object array:
+    + Object[] people = stream.toArray();  
+
+This result is unsatisfactory because the user wants an array of references to *Person*, not references to *Object*.  
+* The stream library solves that problem with constructor references:  
+  * Pass *Person[]::new* to the *toArray* method: 
+    * Person[] people = stream.toArray(Person[] :: new);  
+
+The *toArray* method invokes this constructor to obtain an array of the correct type, then fills and returns the array.  
+
+
+
