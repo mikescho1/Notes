@@ -9,6 +9,15 @@ if i is less than n:
 * result[i-n + length] 
 
 
+OR
+Logic  
+if i is less than n:  
+* result[i] = arr[i + d]
+  
+if i greater than or equal to n:  
+* result [i] = arr[i+d - arr.length]
+
+
 ###### Given an int array of size x, rotate n number of times to right:  
 Logic:    
 
