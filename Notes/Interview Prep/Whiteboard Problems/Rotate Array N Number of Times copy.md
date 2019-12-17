@@ -3,10 +3,9 @@
 ## N Rotations To The Left:
 ##### Logic in Result:  
 
-public int[] rotLeftVersion1(int[]  
- a, int n) {  
+public  int [] rotLeftVersion1 (int []  a,  int  n)  {  
 
-    int[] result = new int[origArr.length];  
+    int[] result  =  new int [ origArr.length ];  
 
     for(int i = 0; i < a; i++) {  
 
