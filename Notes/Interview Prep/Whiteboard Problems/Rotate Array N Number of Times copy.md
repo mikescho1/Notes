@@ -26,7 +26,7 @@ public  int [] rotLeftVersion1 (int []  a,  int  n)  {
 }  
 
 ##### Logic Not In Result:
-public int[] rotLeftVersion2(int[] a, int d) {  
+public  int [] rotLeftVersion2 (int[] a, int d) {  
 
 int[] result = new int[a.length];  
 
@@ -53,7 +53,7 @@ return result;
 ## N Rotations to The Right:
 ##### Logic in Result:  
 
-public int[] rotateRightVersion1(int[] a, int n) {  
+public  int [] rotateRightVersion1 (int [] a,  int  n) {  
 
     int[] result = new int[a.length];  
 
@@ -78,7 +78,7 @@ public int[] rotateRightVersion1(int[] a, int n) {
 
 ##### Logic Not In Result:  
 
-public int[] rotRightVersion2(int[] a, int d) {  
+public  int [] rotRightVersion2 (int []  a,  int  d) {  
 
     int[] result = new int[a.length];  
 
