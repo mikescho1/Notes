@@ -49,23 +49,38 @@ The service class will reach out to the Spring Boot Application to get the data.
    * Export class.
    * Insert dependency injection by creating a constructor that takes takes an Http component as a parameter.  
      * Must add @Injectable decorator anytime a dependency is injected.  
-   * Create a getTasks() method that reaches out to our API endpoint.  
-     * Pull in map from rxjs library that excepts a response as an objservable.  
-     * 
+     * Create a getTasks() method that reaches out to our API endpoint.  
+     * Pull in map from rxjs library that excepts a response as an objservable. 
+   
+2. Go to tasks-list.component.ts file.  
+   * Import TaskService file.  
+   * Create a constructor that takes TaskService in its parameter.  
+   * Remove temporary data from ngOnInit() method and replace with taskService.getTasks()  
+     * Chain .subscribe() to the get method, which will take an array of tasks that it receives from the server in it's paramater.
+     * Finally, log any errors to the console.  
 
+![](Images/2019-12-24-15-47-21.png)  
 
+3. Go to app.module.ts file.  
+   * Import TaskService.
+   * Add TaskService as a provider. 
+   
+![](Images/2019-12-24-15-41-58.png) 
 
-##### Angular Service Layer:  
-1. ###### create a () proxy-conf.json file:  
-This code will proxy all requests over to spring boot  
-  >\{
-    "/api"; \{
-        "target": "http://localhost:8080",
-        "secure": false
-    }  
-}
-2. ###### Change "start" line in package.json file:  
-This code will pass in the proxy.conf file to "ng serve".  
-> "start": "ng serve --proxy-config proxy-conf.json"  
-* Instead of calling "ng serve", you now need to call "npm start".  
+4. Create a () proxy-conf.json file:  
+   * Set API to http://localhost:8080 so that the application can reach Spring Boot's endpoints.  
+
+![](Images/2019-12-24-16-43-02.png)  
+
+5. Change the "start" line in the package.json file:  
+   * Pass in the newly created proxy.conf file to "ng serve".
+   * *Going forward, start the frontend server by calling "npm start", instead of "ng serve".*  
+
+![](Images/2019-12-24-16-47-45.png)  
+
+Any time your are working with two local hosts like we are here, we need to complete steps 4 and 5. 
+
+Adding localhost:8080 directly to the get task method instead of completing steps 4 & 5 will result in a "cross origin resource sharing" (CORS) issues.
+ 
+
 
