@@ -37,9 +37,7 @@
    * Add a class block to display the due date using the getDueDateLable(task) method.  
   
 ![](Images/2019-12-24-15-10-03.png)  
-
-Display in brower is updated.  
-.
+Display in brower is updated.
 ![](Images/2019-12-24-15-20-05.png)  
 
 Next we will create the service class so that we can remove the status data we entered in the ngOnInit() method to temporarily populate our checklist.  
