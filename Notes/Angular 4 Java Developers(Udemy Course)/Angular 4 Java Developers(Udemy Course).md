@@ -1,20 +1,20 @@
 ### Angular 4 Java Developers Task Application Notes:  
 
-##### Setting Up H2 Console:  
-In applications.property file, enter:  
-* spring.datasource.name=tasks
-* spring.jpa.show-sql=true
-* spring.h2.console.enabled=true
-* spring.h2.console.path=/h2-console  
+#### Setting Up H2 Console For Browser Access:  
+1. In applications.property file, enter:  
+   * spring.datasource.name=tasks
+   * spring.jpa.show-sql=true
+   * spring.h2.console.enabled=true
+   * spring.h2.console.path=/h2-console  
 
-After running server, go to browser and enter:  
-* localhost:8080/h2-console  
+2. Run Server: 
+   * Go to browser and enter localhost:8080/h2-console  
 
-Change JDBC URL To:  
-* jdbc:h2:mem:tasks (plural version of entity name) 
+3. Change JDBC URL:  
+   * In window displayed in browser, change JDBC URL to jdbc:h2:mem:tasks (plural version of entity name) 
 
-##### Create Angular MVC Pattern:  
-###### Create Model Component:
+#### Create Angular MVC Pattern:  
+##### Create Model Component:
 1. Create a task.model.ts file for your entity.
    * add fields and constructor to match your Spring entity class.  
 
@@ -42,7 +42,7 @@ Display in brower is updated.
 
 Next we will create the service class so that we can remove the status data we entered in the ngOnInit() method to temporarily populate our checklist.  
 
-###### Create Service Component:  
+##### Create Service Component:  
 The service class will reach out to the Spring Boot Application to get the data.  
 
 1. Create task.service.ts file.  
