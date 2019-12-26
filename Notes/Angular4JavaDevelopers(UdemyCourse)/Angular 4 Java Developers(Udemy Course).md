@@ -7,10 +7,10 @@
    * spring.jpa.show-sql=true
    * spring.h2.console.enabled=true
    * spring.h2.console.path=/h2-console  
-
+___ 
 2. ### Run Server:    
    * Go to browser and enter localhost:8080/h2-console  
-
+___ 
 3. ### Change JDBC URL:    
    * In window displayed in browser, change JDBC URL to jdbc:h2:mem:tasks (plural version of entity name) 
 
@@ -21,8 +21,12 @@ ___
 ## Angular CLI (Command Line Interface):  
 1. ### Install Angular CLI  
    * Enter "npm install -g @angular/cli" in terminal.  
+___ 
 2. ### Enter "ng new frontend" to create Angular project folders and files.  
   
+___ 
+<br>  
+
 ## Create Angular Components:  
 The main app.component files that are automatically installed when the Angular project is created are used for sections like navigation bar, footer, side bars, etc.  
 
@@ -30,9 +34,11 @@ We will create nested components inside the apps folder to hold our task applica
 
 1. ### Create tasks component:  
      * cd into the 'app folder'.
-     * enter 'ng generate component tasks' or shorthand version 'ng g c tasks'  
+     * enter 'ng generate component tasks' or shorthand version 'ng g c tasks' 
+___   
 2. ### Create tasks-add component subfolder inside tasks:  
      * enter 'ng g c /tasks/ tasks-add'.  
+___  
 3. ### Create tasks-list component subfolder inside tasks:  
      * enter 'ng g c /tasks/ tasks-list'.  
 
@@ -40,32 +46,44 @@ We will create nested components inside the apps folder to hold our task applica
 <br>    
 ![](Images/2019-12-26-09-49-07.png)  
 
+<br>  
+
+____  
+<br>  
+
 ## Add Bootstrap To Project:  
 1. ### Install Bootstrap:  
    * cd into frontend folder.
    * enter 'npm install --save bootstrap' to save it locally.  
+___  
+
 2. ### Tell Angular that we want to use bootstrap:  
    * Got to angular.json folder.  
    * In "styles" array, reference the new bootstrap file.  
      * /node_modules/bootstrap/dist/css/bootstrap.min.css"  
 ![](Images/2019-12-26-10-04-44.png)  
-<br>  
+___  
+
 
 ## Buildout Components:  
 1. ### Create container in main app.component.html to hold tasks.component:  
 ![](Images/2019-12-26-10-07-39.png)  
-<br>  
+___  
+
 
 2. ### Create containers in tasks.component to hold add-tasks and list-tasks component:  
 
 ![](2019-12-26-10-11-01.png)  
+___  
+
 
 3. ### Add starter input.form-control to tasks-add component:  
    * input.form-control is a bootstrap feature that will allow a user to input new tasks in the app. 
    * This feature will updated later in the tutorial.  
  
 ![](Images/2019-12-26-10-16-32.png)  
-<br>  
+___  
+
 
 4. ### Setup tasks-list.component.html:  
    * li.list-group-item is a bootstrap feature will create the list of tasks for the app.  
@@ -73,6 +91,8 @@ We will create nested components inside the apps folder to hold our task applica
 
 ![](Images/2019-12-26-10-30-25.png)  
 <br>  
+___  
+
 
 
 
@@ -86,6 +106,7 @@ We will create nested components inside the apps folder to hold our task applica
 
 ![](Images/2019-12-24-14-45-57.png)     
 <br>  
+___  
 
 2. ### Import task.model.ts to tasks.list.component.ts.    
      * Import file.  
@@ -96,8 +117,7 @@ We will create nested components inside the apps folder to hold our task applica
       * The logic for this method will be added when we complete the task.service.ts.    
 
 ![](Images/2019-12-24-15-14-56.png)      
-<br>  
-
+___  
 
 3. ### Update tasks-list.component.html to dispaly the tasks using Bootstrap.    
    * Create *ngFor to loop through list of tasks. 
@@ -106,36 +126,53 @@ We will create nested components inside the apps folder to hold our task applica
    * Add a class block to display the due date using the getDueDateLable(task) method.    
 
 ![](Images/2019-12-24-15-10-03.png)   
-<br>  
-
 
 Display in brower is updated.  
 
 ![](Images/2019-12-24-15-20-05.png)      
 
-Next we will create the service class so that we can remove the status data we entered in the *ngOnInit()* method to temporarily populate our checklist.  
-<br>   
+Next we will create the service class so that we can remove the static data we entered in the *ngOnInit()* method to temporarily populate our checklist.  
+<br>  
+___  
+<br>  
 
-
-___   
 ## Create Service Component:  
 The service class will reach out to the Spring Boot Application to get the data.  
 
 1. ### Create task.service.ts file to hold CRUD Operations.    
    * Export class.
    * Insert dependency injection by creating a constructor that takes takes an Http component as a parameter.  
-     * Must add @Injectable decorator anytime a dependency is injected.  
-     * Create a *getTasks()* method that reaches out to our API endpoint.  
-       * Pull in map from rxjs library that excepts a response as an objservable for the *getTasks()* method. 
-     * Create a *saveTask(task: Task, checked: boolean)* method.  
-       * set task completed based on the value of the check box (whether checked or not).  
-       * Similar to the *getTasks()* method, we are going to use our http component to call out to our Spring Boot end point that takes in a body of 'task'.
-       * We pass the task object we receive in our tasklist.component.html (step 3 above) as the body of our post method.  
-![](Images/2019-12-26-09-03-31.png)  
+   * Must add @Injectable decorator anytime a dependency is injected.  
 <br>  
 
-   
-2. ### Go to tasks-list.component.ts file.   
+___  
+2. ### Create a *getTasks()* method that reaches out to our API endpoint.  
+   * Pull in map from rxjs library that excepts a response as an objservable for the *getTasks()* method. 
+___ 
+3. ### Create a *saveTask(task: Task, checked: boolean) method.  
+   * set task completed based on the value of the check box (whether checked or not).  
+   * Similar to the *getTasks()* method, we are going to use our http component to call out to our Spring Boot end point that takes in a body of 'task'.  
+   * We pass the task object we receive in our tasklist.component.html (step 3 above) as the body of our post method.  
+___ 
+4. ### Create an *addTask() method.  
+   1. #### Create an *addTask(task: Task) method in task.Service.ts.  ![](Images/2019-12-26-10-49-46.png)  
+   2. #### Update task.Model.ts so that the constructor no longer takes and id in its parameter.  
+      * The id will be generated on the back-end through Spring Boot.  
+      * ![](Images/2019-12-26-10-59-28.png)  
+   3. #### Add the following methods to tasks-add.component.ts file:  
+      * **Constructor that takes a taskService object.**  
+        * ![](Images/2019-12-26-10-54-43.png)  
+      * **addTaskValue field and onTaskAdd(event) method.**  
+        * Creates and returns a new task that takes a value, is marked as not completed, and inserts the current date.  
+        * This method also clears the user input field where the task was entered and starts the process of adding the new task to the task list (remaining logic to add the new task to the list is in step v below).
+        * ![](Images/2019-12-26-12-26-45.png)  
+   4. #### Go into the tasks-add.component.html file to add an eventListener and to set ngModel to the addTaskValue that we created in tasks-add.component.ts.  
+      * ![](Images/2019-12-26-11-15-05.png)  
+   5. #### Have task list updated when new task is added without having to go back to the database.  
+      * In task.service.ts, create onTaskAdded field and set it equal to new *EventEmitter\<Task>();
+<br>  
+___ 
+1. ### Go to tasks-list.component.ts file.   
    * Import TaskService file.  
    * Create a constructor that takes TaskService in its parameter.  
    * Remove temporary data from *ngOnInit()* method and replace with *taskService.getTasks()*  
