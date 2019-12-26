@@ -66,9 +66,14 @@ We will create nested components inside the apps folder to hold our task applica
  
 ![](Images/2019-12-26-10-16-32.png)  
 <br>  
-4. ### Setup tasks-list component:  
 
-   * 
+4. ### Setup tasks-list.component.html:  
+   * li.list-group-item is a bootstrap feature will create the list of tasks for the app.  
+     * The list below is in place to show that the layout is formatted correctly. This page will be updated once we create our task model in the next section.  
+
+![](Images/2019-12-26-10-30-25.png)  
+<br>  
+
 
 
 ## Create Angular MVC Pattern:  
