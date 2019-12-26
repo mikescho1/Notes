@@ -218,7 +218,8 @@ ___
    4. "deploy": "copyfiles -f dist/** ../resources/static",  
       * this script copies the contents from our apps dist folder into the server's static folder.  
       * download the copyfiles package from mpmjs.com by entering 'npm install --save-dev copyfiles'  
-      * ![](Images/2019-12-26-13-03-28.png)
+      * ![](Images/2019-12-26-13-03-28.png)  
+The server and frontend apps can now both be run as a single app when the server is started.  
 
 
 
