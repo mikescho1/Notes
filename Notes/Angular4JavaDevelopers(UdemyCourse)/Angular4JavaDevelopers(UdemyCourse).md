@@ -1,23 +1,53 @@
 # Angular 4 Java Developers Task Application Notes:  
 <br>  
 
-## Setting Up H2 Console For Browser Access:  
-1. ### In applications.property file, enter:   
-   * spring.datasource.name=tasks
-   * spring.jpa.show-sql=true
-   * spring.h2.console.enabled=true
-   * spring.h2.console.path=/h2-console  
-___ 
-2. ### Run Server:    
-   * Go to browser and enter localhost:8080/h2-console  
-___ 
-3. ### Change JDBC URL:    
-   * In window displayed in browser, change JDBC URL to jdbc:h2:mem:tasks (plural version of entity name) 
+# Setting Up Spring Boot:
 
-<br>   
-
+### Task Domain:  
+![](Images/2019-12-26-13-54-36.png)  
 
 ___  
+
+## Task Controller:  
+![](Images/2019-12-26-13-55-23.png)  
+
+___  
+
+## Task Repository:  
+![](Images/2019-12-26-13-56-34.png)  
+
+___  
+
+## Task Service Interface: 
+![](Images/2019-12-26-13-58-02.png)  
+
+___  
+
+## Task Service Implementation:  
+![](Images/2019-12-26-13-58-38.png)  
+
+___   
+
+## Application.Properties Folder:  
+![](Images/2019-12-26-13-59-21.png)  
+     * These settings allow the H2 console to be viewed from the browser.  
+     * To view the console, run the server and enter localhost:8080/h2-console.  
+     * In the window that is displayed in the broswer, change the JDBC URL to jdbc:h2:mem:tasks (plural version of entity object)  
+
+![](Images/2019-12-26-14-06-18.png)  
+
+___  
+
+
+
+<br>  
+<br>  
+<br>  
+
+# Setting Up Angular:
+
+
+ 
 ## Angular CLI (Command Line Interface):  
 1. ### Install Angular CLI  
    * Enter "npm install -g @angular/cli" in terminal.  
@@ -57,7 +87,7 @@ ____
    * enter 'npm install --save bootstrap' to save it locally.  
 ___  
 
-2. ### Tell Angular that we want to use bootstrap:  
+2. ### Tell Angular start using bootstrap:  
    * Got to angular.json folder.  
    * In "styles" array, reference the new bootstrap file.  
      * /node_modules/bootstrap/dist/css/bootstrap.min.css"  
@@ -71,13 +101,13 @@ ___
 ___  
 
 
-2. ### Create containers in tasks.component to hold add-tasks and list-tasks component:  
+2. ## Create containers in tasks.component to hold add-tasks and list-tasks component:  
 
 ![](2019-12-26-10-11-01.png)  
 ___  
 
 
-3. ### Add starter input.form-control to tasks-add component:  
+3. ## Add starter input.form-control to tasks-add component:  
    * input.form-control is a bootstrap feature that will allow a user to input new tasks in the app. 
    * This feature will updated later in the tutorial.  
  
@@ -85,7 +115,7 @@ ___
 ___  
 
 
-4. ### Setup tasks-list.component.html:  
+4. ## Setup tasks-list.component.html:  
    * li.list-group-item is a bootstrap feature will create the list of tasks for the app.  
      * The list below is in place to show that the layout is formatted correctly. This page will be updated once we create our task model in the next section.  
 
@@ -98,17 +128,19 @@ ___
 
 ## Create Angular MVC Pattern:  
 <br> 
+<br>  
 
-### Create Model Component:  
 
-1. ###  Create a task.model.ts file for your entity.  
+## Create Model Component:  
+
+1. ##  Create a task.model.ts file for your entity.  
    * add fields and constructor to match your Spring entity class.  
 
 ![](Images/2019-12-24-14-45-57.png)     
 <br>  
 ___  
 
-2. ### Import task.model.ts to tasks.list.component.ts.    
+2. ## Import task.model.ts to tasks.list.component.ts.    
      * Import file.  
     * Initialize an array of tasks.  
     * Optionally set some tasks up to test by creating new tasks in the ngOnInit() method. 
@@ -119,7 +151,7 @@ ___
 ![](Images/2019-12-24-15-14-56.png)      
 ___  
 
-3. ### Update tasks-list.component.html to dispaly the tasks using Bootstrap.    
+3. ## Update tasks-list.component.html to dispaly the tasks using Bootstrap.    
    * Create *ngFor to loop through list of tasks. 
    * Add checkboxes and setup input so that checkboxes can be checked off as completed.  
    * Add a class block to display whether or not task is completed.  
@@ -131,7 +163,7 @@ Display in brower is updated.
 
 ![](Images/2019-12-24-15-20-05.png)      
 
-Next we will create the service class so that we can remove the static data we entered in the *ngOnInit()* method to temporarily populate our checklist.  
+Next create the service class so the static data that was entered in the *ngOnInit()* method to temporarily populate our checklist can be removed.  
 <br>  
 ___  
 <br>  
