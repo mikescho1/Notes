@@ -1,0 +1,5 @@
+---
+applications:
+- name: DTVClient
+  buildpack: staticfile_buildpack
+  memory: 512M
