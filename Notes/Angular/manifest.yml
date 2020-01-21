@@ -3,3 +3,7 @@ applications:
 - name: DTVClient
   buildpack: staticfile_buildpack
   memory: 512M
+  
+  
+  // put this is static file to enable manual routing
+  //pushstate: enabled
