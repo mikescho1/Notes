@@ -1,4 +1,5 @@
 # HTML Topography  
+
 <h1>Heading 1</h1>  
 
 \<h1>Heading 1\</h1>
@@ -43,15 +44,6 @@
 \<hr>  
 
 
-## Links:  
-* \<a href="http://google.com">Click For Google\</a>  
-
-![](Images/2020-01-30-12-48-50.png)  
-
-![](Images/2020-01-30-12-49-47.png)  
-
-## Open Link In New Page:  
-* 
 
 
 
