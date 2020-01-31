@@ -7,10 +7,14 @@
   <title>Forms & Input</title>
 </head>
 <body>
+  <!-- The HTML | action Attribute is used to specify where the formdata is to be sent to the server after submission of the form. It can be used in the <form> element. -->
   <form action="process.php">
     <!-- Text -->
     <div>
+      <!-- The <label> element is used to associate a text label with a form <input> field. The label is used to tell users the value that should be entered in the associated input field. -->
       <label for="name">Name</label><br>
+      <!-- Specifies the form element the <input> element belongs to. The value of this attribute must be the id attribute of a <form> element in the same document. -->
+        <!-- The HTML <form> name Attribute is used to specify the name of a form Element. It is used to reference the form-data after submitting the form or to reference the element in a JavaScript. -->
       <input type="text" id="name" name="name" value="John Doe">
     </div>
     <!-- Email -->
