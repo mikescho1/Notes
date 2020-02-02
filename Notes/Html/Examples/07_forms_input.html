@@ -15,6 +15,7 @@
       <label for="name">Name</label><br>
       <!-- Specifies the form element the <input> element belongs to. The value of this attribute must be the id attribute of a <form> element in the same document. -->
         <!-- The HTML <form> name Attribute is used to specify the name of a form Element. It is used to reference the form-data after submitting the form or to reference the element in a JavaScript. -->
+          <!-- The HTML <label> for Attribute is used to specify the type of form element/object a label is bound to. -->
       <input type="text" id="name" name="name" value="John Doe">
     </div>
     <!-- Email -->
@@ -24,12 +25,14 @@
     </div>
     <!-- Textarea -->
     <div>
+      <!-- cols determine the width of the text area, rows determine the height of the text area  -->
       <label for="message">Message</label><br>
       <textarea name="message" id="message" cols="50" rows="5"></textarea>
     </div>
     <!-- Select -->
     <div>
       <label for="sex">Sex</label>
+      <!-- the select element is used to create a drop-down list. -->
       <select name="sex" id="sex">
         <option value="male">Male</option>
         <option value="female" selected>Female</option>
@@ -37,6 +40,7 @@
       </select>
     </div>
     <!-- Number -->
+    <!-- the number field doesn't allow letters and adds incrementor arrows on the side of the field. -->
     <div>
       <label for="age">Age</label><br>
       <input type="number" name="age" id="age">
